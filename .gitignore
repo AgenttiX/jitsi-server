@@ -1,0 +1,6 @@
+*.zip
+.idea
+jitsi
+
+# This file contains passwords
+# !jitsi/.env

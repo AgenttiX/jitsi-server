@@ -39,3 +39,14 @@ if [ ! -f "${JITSI_PATH}/.env" ]; then
 fi
 
 mkdir -p "${CONFIG_PATH}"/{web,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}
+
+if command -v ufw &> /dev/null; then
+  echo "Configuring UFW firewall."
+  sudo ufw allow 8000 comment "Jitsi HTTP"
+  sudo ufw allow 10000/udp comment "Jitsi RTP"
+  sudo ufw allow 4443/tcp comment "Jitsi RTP TCP"
+else
+  echo "UFW seems not to be installed. Skipping firewall configuration."
+fi
+
+echo "Jitsi installed."
